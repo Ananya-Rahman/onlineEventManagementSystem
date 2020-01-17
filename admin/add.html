@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+</head>
+<body>
+        <div class="container">
+                <div class="card mt-5">
+                    <div class="card-header">
+                            <h2>Total Cost Calculation Box</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="../php/add.php" method="post">
+                            <div class="form-group">
+                                    <label for="name">Event Name</label>
+                                    <input type="text" name="event_name" id="Uname" class="form-control">
+                                </div>
+
+                            <div class="form-group">
+                                <label for="name">Decoration</label>
+                                <input type="text" name="decoration" id="Uname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Food</label>
+                                <input type="text" name="food" id="Uname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                    <label for="text">Special Effeccts</label>
+                                    <input type="text" name="special" id="passwrd" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                        <label for="text">Programs</label>
+                                        <input type=text"" name="programs" id="passwrd" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="text">Management Levels</label>
+                                            <input type="text" name="levels" id="passwrd" class="form-control">
+                                        </div>
+                                        
+                                            <div class="form-group">
+                                                    <label for="number">Total Cost</label>
+                                                    <input type="number" name="cost" id="cost" class="form-control">
+                                                </div>
+                                <div class="form-group">
+                                    <button type="submit" value="submit" class="btn btn-outline-info">Add</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+</body>
+</html>

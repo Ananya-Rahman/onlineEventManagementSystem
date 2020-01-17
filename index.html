@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="login-box">
+                <div class="row">
+                    <div class="col-md-6 login-left">
+                        <h2 class="text mb-4"> Login Here </h2>
+
+                        
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="login" > Username </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" name="user"
+                                            class="from-control"  id="loginUserName" required>
+                                    </div></div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="login">Password </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="password" name="password" id="loginPassword"
+                                            class="from-control" required>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <button type="submit" id="loginBtn" class="btn
+                                btn-primary" value="login"> Login
+                            </button>
+                            <span id="log_error_message" class="text-white"></span>
+                           
+                        
+                    </div>
+
+                    <div class="col-md-6 login-right">
+                        <h2 class="text mb-4"> Registration Here </h2>
+
+                        <div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label> Username </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" id="regUserName"
+                                            name="user"
+                                            class="from-control" required>
+                                    </div></div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Password </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="password" id="regPassword"
+                                            name="password"
+                                            class="from-control" required>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <button type="submit" id="registerBtn" class="btn
+                                btn-primary"> Register
+                            </button>
+                            <span id="error_message" class="text-danger"></span>
+                            <span id="success_message" class="text-success"></span>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+   
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</html>
+
+<script>
+
+    
+    $(document).ready(function() {
+        $("#registerBtn").on("click", function() {
+
+            var userName = $('#regUserName').val();
+            var password = $('#regPassword').val();
+
+            $('#regUserName').val("");
+            $('#regPassword').val("");
+
+            if(userName== '' || password == ''){
+                $('#error_message').html("All fields are required");
+            }
+            else{
+
+               
+                $('#error_message').html('');
+                $.ajax({
+                    url:"./php/registration.php",
+                    method: "POST",
+                    data: {user:userName, password:password},
+                    dataType: "json",
+                    success:function(result){
+                        
+                      
+                        if(result.status == "ok")
+                            $('#success_message').fadeIn().html(result.msg);
+                         else{
+                            $('#error_message').fadeIn().html(result.msg);
+                         }   
+                    }
+                    
+
+                    
+              });
+            }
+
+        });
+
+        $("#loginBtn").on("click", function() {
+
+var userName = $('#loginUserName').val();
+var password = $('#loginPassword').val();
+
+if(userName== '' || password == ''){
+    $('#log_error_message').html("All fields are required");
+}
+else{
+
+   
+    $('#error_message').html('');
+    console.log(userName);
+    $.ajax({
+        url:"./php/login.php",
+        method: "POST",
+        data: {user:userName, password:password},
+        dataType: "json",
+        success:function(result){
+        
+           
+            if(result.status == "ok")
+               window.location.href = "./php/profile.php";
+             else{
+                $('#log_error_message').fadeIn().html(result.msg);
+             }   
+        },
+        error:function(err){
+            console.log("err : "+ err);
+        }
+        
+
+        
+  });
+}
+
+});
+    });
+</script>
